@@ -30,6 +30,17 @@ class DefaultController extends Controller
      */
     public function showPostAction($slug, Request $request)
     {
+        /** @var PostService $postService */
+        $postService = $this->get('app.services.post_service');
 
+        $post = $postService->getPostBySlug($slug);
+
+        if (!$post) {
+            throw $this->createNotFoundException('Unable to find this entity.');
+        }
+
+        return array(
+            'post' => $post
+        );
     }
 }
