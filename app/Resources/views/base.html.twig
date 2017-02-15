@@ -2,7 +2,13 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Blog{% endblock %}</title>
+        {% javascripts "@AppBundle/Resources/public/components/bootstrap/dist/js/bootstrap.min.js" %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% stylesheets '@AppBundle/Resources/public/components/bootstrap/dist/css/bootstrap.min.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
