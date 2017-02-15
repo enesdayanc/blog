@@ -64,4 +64,18 @@ class PostService
         return $postRepository->find($id);
     }
 
+    /**
+     * @param $slug
+     * @return Post|null
+     */
+    public function getPostBySlug($slug)
+    {
+        /** @var EntityManager $em */
+        $em = $this->container->get('doctrine.orm.default_entity_manager');
+
+        /** @var PostRepository $postReğpsitory */
+        $postRepository = $em->getRepository('AppBundle:Post');
+
+        return $postRepository->findOneBy(array('slug' => $slug));
+    }
 }
