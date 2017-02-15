@@ -11,6 +11,7 @@ namespace AppBundle\Services;
 use AppBundle\Entity\Post;
 use AppBundle\Repository\PostRepository;
 use Doctrine\ORM\EntityManager;
+use Monolog\Logger;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -42,6 +43,9 @@ class PostService
             $em->persist($post);
             $em->flush();
         } catch (Exception $e) {
+            /** @var Logger $logger */
+            $logger = $this->container->get('logger');
+            $logger->critical(sprintf('[PostService][savePost] error: %s', $e->getMessage()));
             return false;
         }
 
