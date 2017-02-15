@@ -11,6 +11,7 @@ namespace AppBundle\Services;
 use AppBundle\Entity\Post;
 use AppBundle\Repository\PostRepository;
 use Doctrine\ORM\EntityManager;
+use Knp\Component\Pager\Paginator;
 use Monolog\Logger;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -117,5 +118,26 @@ class PostService
         }
 
         return true;
+    }
+
+    public function getPostPagination($page = 1, $limit = 10)
+    {
+        /** @var EntityManager $em */
+        $em = $this->container->get('doctrine.orm.default_entity_manager');
+
+        $qb = $em->createQueryBuilder();
+
+        $qb->select('post')
+            ->from('AppBundle:Post', 'post');
+
+        /** @var Paginator $paginator */
+        $paginator = $this->container->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $qb->getQuery(),
+            $page,
+            $limit
+        );
+
+        return $pagination;
     }
 }
