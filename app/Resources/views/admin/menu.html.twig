@@ -15,6 +15,15 @@
                         <li><a href="{{ url('create_post') }}">Add</a></li>
                     </ul>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Categories <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url('category_list') }}">List</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ url('create_category') }}">Add</a></li>
+                    </ul>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ url('fos_user_security_logout') }}">Logout</a></li>
