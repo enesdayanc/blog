@@ -23,7 +23,7 @@ class PostType extends AbstractType
                     array('rows' => '10')
                 )
             )
-            ->add('save', SubmitType::class, array('label' => 'Create Post'));
+            ->add('save', SubmitType::class, array('label' => 'Save'));
     }
 
     /**
