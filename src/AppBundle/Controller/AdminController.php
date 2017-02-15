@@ -95,4 +95,24 @@ class AdminController extends Controller
             'form' => $form->createView(),
         );
     }
+
+    /**
+     * @Route("/post/delete/{id}", name="delete_post")
+     */
+    public function deletePostAction($id, Request $request)
+    {
+        /** @var PostService $postService */
+        $postService = $this->get('app.services.post_service');
+
+        $deleteResult = $postService->deletePostById($id);
+
+        if ($deleteResult) {
+            // todo: show success message
+        } else {
+            // todo: show error message
+        }
+
+        $redirectUrl = $this->generateUrl('admin_homepage');
+        return $this->redirect($redirectUrl);
+    }
 }
