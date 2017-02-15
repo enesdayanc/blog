@@ -4,5 +4,18 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="{{ url('admin_homepage') }}">Personal Blog Admin</a>
         </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Posts <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url('admin_homepage') }}">List</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ url('create_post') }}">Add</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
