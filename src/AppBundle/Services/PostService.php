@@ -82,4 +82,40 @@ class PostService
 
         return $postRepository->findOneBy(array('slug' => $slug));
     }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function deletePostById($id)
+    {
+        $post = $this->getPostById($id);
+
+        if (!$post) {
+            return false;
+        }
+
+        return $this->deletePost($post);
+    }
+
+    /**
+     * @param Post $post
+     * @return bool
+     */
+    public function deletePost(Post $post)
+    {
+        /** @var EntityManager $em */
+        $em = $this->container->get('doctrine.orm.default_entity_manager');
+
+        try {
+            $em->remove($post);
+        } catch (Exception $e) {
+            /** @var Logger $logger */
+            $logger = $this->container->get('logger');
+            $logger->critical(sprintf('[PostService][deletePostById] error: %s', $e->getMessage()));
+            return false;
+        }
+
+        return true;
+    }
 }
