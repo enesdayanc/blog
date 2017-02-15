@@ -3,7 +3,7 @@
     <div class="col-md-12">
         {% for post in pagination %}
             <h1><a href="{{ url('show_post', {slug: post.slug}) }}">{{ post.title }}</a></h1>
-            <p>{{ post.description }}</p>
+            <p>{{ post.description|length > 50 ? post.description|slice(0, 50) ~ '...' : post.description }}</p>
             <hr>
         {% endfor %}
     </div>
