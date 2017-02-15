@@ -15,7 +15,8 @@
         <thead>
         <tr>
             <th class="col-md-1">{{ knp_pagination_sortable(pagination, 'Id', 'post.id') }}</th>
-            <th class="col-md-9">{{ knp_pagination_sortable(pagination, 'Title', 'post.title') }}</th>
+            <th class="col-md-6">{{ knp_pagination_sortable(pagination, 'Title', 'post.title') }}</th>
+            <th class="col-md-2">{{ knp_pagination_sortable(pagination, 'Category', 'category.name') }}</th>
             <th class="col-md-2 text-right">Actions</th>
         </tr>
         </thead>
@@ -25,6 +26,7 @@
             <tr {% if loop.index is odd %}class="color"{% endif %}>
                 <td>{{ post.id }}</td>
                 <td>{{ post.title }}</td>
+                <td>{{ post.category.name is defined ? post.category.name : '' }}</td>
                 <td class="text-right">
                     <a class="text-warning" href="{{ url('edit_post', {id: post.id}) }}">Edit</a> |
                     <a class="text-danger" href="{{ url('delete_post', {id: post.id}) }}">Delete</a>

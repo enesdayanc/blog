@@ -128,8 +128,10 @@ class PostService
 
         $qb = $em->createQueryBuilder();
 
-        $qb->select('post')
-            ->from('AppBundle:Post', 'post');
+        $qb->select('post, category')
+            ->from('AppBundle:Post', 'post')
+            ->leftJoin('post.category', 'category')
+            ->orderBy('post.id', 'DESC');
 
         /** @var Paginator $paginator */
         $paginator = $this->container->get('knp_paginator');
