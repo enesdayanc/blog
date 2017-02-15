@@ -1,6 +1,7 @@
 {
   "name": "AppBundle",
   "dependencies": {
+    "jquery": "~3.1.1",
     "bootstrap": "latest"
   }
 }
