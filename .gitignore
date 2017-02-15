@@ -96,3 +96,4 @@ fabric.properties
 # *.ipr
 /.idea/
 .idea
+/src/AppBundle/Resources/public/components/cache/*
