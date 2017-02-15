@@ -45,6 +45,12 @@ class Post
     private $slug;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category",fetch="EAGER")
+     * @ORM\JoinColumn(referencedColumnName="id", nullable=true)
+     **/
+    private $category;
+
+    /**
      * Get id
      *
      * @return int
