@@ -1,0 +1,8 @@
+services:
+    app.services.post_service:
+        class: AppBundle\Services\PostService
+        arguments: ['@service_container']
+
+    app.services.category_service:
+        class: AppBundle\Services\CategoryService
+        arguments: ['@service_container']
