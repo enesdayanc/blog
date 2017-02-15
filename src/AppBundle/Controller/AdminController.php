@@ -16,12 +16,17 @@ use Symfony\Component\HttpFoundation\Request;
 class AdminController extends Controller
 {
     /**
-     * @Route("/", name="admin_homepage")
+     * @Route("/{page}", defaults={"page" = 1}, name="admin_homepage")
      * @Template("@App/admin/index.html.twig")
      */
-    public function indexAction(Request $request)
+    public function indexAction($page, Request $request)
     {
-        return array();
+        /** @var PostService $postService */
+        $postService = $this->get('app.services.post_service');
+
+        return array(
+            'pagination' => $postService->getPostPagination($page)
+        );
     }
 
     /**
