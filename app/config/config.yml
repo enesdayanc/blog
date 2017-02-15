@@ -71,3 +71,8 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
+
+# SpBowerBundle Configuration
+sp_bower:
+    bundles:
+        AppBundle: ~
