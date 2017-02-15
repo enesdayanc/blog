@@ -58,7 +58,7 @@ class PostService
         /** @var EntityManager $em */
         $em = $this->container->get('doctrine.orm.default_entity_manager');
 
-        /** @var PostRepository $postReğpsitory */
+        /** @var PostRepository $postRepository */
         $postRepository = $em->getRepository('AppBundle:Post');
 
         return $postRepository->find($id);
@@ -73,7 +73,7 @@ class PostService
         /** @var EntityManager $em */
         $em = $this->container->get('doctrine.orm.default_entity_manager');
 
-        /** @var PostRepository $postReğpsitory */
+        /** @var PostRepository $postRepository */
         $postRepository = $em->getRepository('AppBundle:Post');
 
         return $postRepository->findOneBy(array('slug' => $slug));
