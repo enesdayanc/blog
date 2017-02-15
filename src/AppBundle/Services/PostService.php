@@ -9,6 +9,7 @@
 namespace AppBundle\Services;
 
 use AppBundle\Entity\Post;
+use AppBundle\Repository\PostRepository;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -45,6 +46,22 @@ class PostService
         }
 
         return true;
+    }
+
+
+    /**
+     * @param $id
+     * @return Post|null
+     */
+    public function getPostById($id)
+    {
+        /** @var EntityManager $em */
+        $em = $this->container->get('doctrine.orm.default_entity_manager');
+
+        /** @var PostRepository $postReğpsitory */
+        $postRepository = $em->getRepository('AppBundle:Post');
+
+        return $postRepository->find($id);
     }
 
 }
