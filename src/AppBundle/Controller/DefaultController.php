@@ -15,8 +15,15 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return array(
+        return array();
+    }
 
-        );
+    /**
+     * @Route("/post/{slug}", name="show_post")
+     * @Template("@App/default/post.html.twig")
+     */
+    public function showPostAction($slug, Request $request)
+    {
+
     }
 }
