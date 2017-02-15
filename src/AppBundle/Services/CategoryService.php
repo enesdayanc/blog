@@ -14,6 +14,7 @@ use Doctrine\ORM\EntityManager;
 use Entity\Repository\CategoryRepository;
 use Exception;
 use Knp\Component\Pager\Paginator;
+use Monolog\Logger;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class CategoryService
@@ -110,6 +111,7 @@ class CategoryService
 
         try {
             $em->remove($category);
+            $em->flush();
         } catch (Exception $e) {
             /** @var Logger $logger */
             $logger = $this->container->get('logger');

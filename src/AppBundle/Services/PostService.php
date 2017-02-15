@@ -110,6 +110,7 @@ class PostService
 
         try {
             $em->remove($post);
+            $em->flush();
         } catch (Exception $e) {
             /** @var Logger $logger */
             $logger = $this->container->get('logger');
