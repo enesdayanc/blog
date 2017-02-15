@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Services\PostService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,12 +11,17 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/{page}", defaults={"page" = 1}, name="homepage")
      * @Template("@App/default/index.html.twig")
      */
-    public function indexAction(Request $request)
+    public function indexAction($page, Request $request)
     {
-        return array();
+        /** @var PostService $postService */
+        $postService = $this->get('app.services.post_service');
+
+        return array(
+            'pagination' => $postService->getPostPagination($page, 5)
+        );
     }
 
     /**
