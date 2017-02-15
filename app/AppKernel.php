@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Sp\BowerBundle\SpBowerBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new AppBundle\AppBundle(),
         );
 
