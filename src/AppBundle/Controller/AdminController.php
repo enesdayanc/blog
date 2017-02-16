@@ -8,6 +8,7 @@ use AppBundle\Form\CategoryType;
 use AppBundle\Form\PostType;
 use AppBundle\Services\CategoryService;
 use AppBundle\Services\PostService;
+use Monolog\Logger;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -80,7 +81,10 @@ class AdminController extends Controller
         $post = $postService->getPostById($id);
 
         if (!$post) {
-            // todo: log this
+            /** @var Logger $logger */
+            $logger = $this->container->get('logger');
+            $logger->addCritical(sprintf('[editPostAction] error id not found %s', $id));
+
             throw $this->createNotFoundException('Unable to find this entity.');
         }
 
@@ -187,7 +191,10 @@ class AdminController extends Controller
         $category = $categoryService->getCategoryById($id);
 
         if (!$category) {
-            // todo: log this
+            /** @var Logger $logger */
+            $logger = $this->container->get('logger');
+            $logger->addCritical(sprintf('[editCategoryAction] error id not found %s', $id));
+
             throw $this->createNotFoundException('Unable to find this entity.');
         }
 
