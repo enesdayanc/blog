@@ -4,6 +4,11 @@
         {% for post in pagination %}
             <h1><a href="{{ url('show_post', {slug: post.slug}) }}">{{ post.title }}</a></h1>
             <p>{{ post.description|length > 50 ? post.description|slice(0, 50) ~ '...' : post.description }}</p>
+            {% if post.category.name is defined %}
+                <div>
+                    <span class="badge">{{ post.category.name }}</span>
+                </div>
+            {% endif %}
             <hr>
         {% endfor %}
     </div>
