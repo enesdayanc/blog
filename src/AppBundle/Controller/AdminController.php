@@ -13,6 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * @Route("/admin")
@@ -95,10 +96,13 @@ class AdminController extends Controller
         if ($form->isValid()) {
             $saveResult = $postService->savePost($post);
 
+            /** @var Session $session */
+            $session = $this->get('session');
+
             if ($saveResult) {
-                // todo: show success message
+                $session->getFlashBag()->add('success', 'Success');
             } else {
-                // todo: show error message
+                $session->getFlashBag()->add('error', 'Error');
             }
         }
 
@@ -118,10 +122,13 @@ class AdminController extends Controller
 
         $deleteResult = $postService->deletePostById($id);
 
+        /** @var Session $session */
+        $session = $this->get('session');
+
         if ($deleteResult) {
-            // todo: show success message
+            $session->getFlashBag()->add('success', 'Success');
         } else {
-            // todo: show error message
+            $session->getFlashBag()->add('error', 'Error');
         }
 
         $redirectUrl = $this->generateUrl('admin_homepage');
@@ -205,10 +212,13 @@ class AdminController extends Controller
         if ($form->isValid()) {
             $saveResult = $categoryService->saveCategory($category);
 
+            /** @var Session $session */
+            $session = $this->get('session');
+
             if ($saveResult) {
-                // todo: show success message
+                $session->getFlashBag()->add('success', 'Success');
             } else {
-                // todo: show error message
+                $session->getFlashBag()->add('error', 'Error');
             }
         }
 
@@ -228,10 +238,13 @@ class AdminController extends Controller
 
         $deleteResult = $categoryService->deleteCategoryById($id);
 
+        /** @var Session $session */
+        $session = $this->get('session');
+
         if ($deleteResult) {
-            // todo: show success message
+            $session->getFlashBag()->add('success', 'Success');
         } else {
-            // todo: show error message
+            $session->getFlashBag()->add('error', 'Error');
         }
 
         $redirectUrl = $this->generateUrl('category_list');
